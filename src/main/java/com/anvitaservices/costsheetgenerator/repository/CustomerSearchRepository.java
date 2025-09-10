@@ -11,17 +11,20 @@ import java.util.List;
 @Repository
 public interface CustomerSearchRepository extends JpaRepository<CustomerSearch, Long> {
     
-    // Find by customer ID
-    List<CustomerSearch> findByCusId(Long cusId);
+    // FIXED: Find by customer ID using relationship
+    @Query("SELECT cs FROM CustomerSearch cs WHERE cs.customer.cusId = :cusId")
+    List<CustomerSearch> findByCusId(@Param("cusId") Long cusId);
     
     // Find by project
     List<CustomerSearch> findByProject(String project);
     
-    // Find by customer ID and project
-    List<CustomerSearch> findByCusIdAndProject(Long cusId, String project);
+    // FIXED: Find by customer ID and project using relationship
+    @Query("SELECT cs FROM CustomerSearch cs WHERE cs.customer.cusId = :cusId AND cs.project = :project")
+    List<CustomerSearch> findByCusIdAndProject(@Param("cusId") Long cusId, @Param("project") String project);
     
-    // Find by customer ID ordered by date
-    List<CustomerSearch> findByCusIdOrderByDateSearchedDesc(Long cusId);
+    // FIXED: Find by customer ID ordered by date using relationship
+    @Query("SELECT cs FROM CustomerSearch cs WHERE cs.customer.cusId = :cusId ORDER BY cs.dateSearched DESC")
+    List<CustomerSearch> findByCusIdOrderByDateSearchedDesc(@Param("cusId") Long cusId);
     
     // Find searches after specific date
     List<CustomerSearch> findByDateSearchedAfter(LocalDateTime date);
@@ -43,8 +46,8 @@ public interface CustomerSearchRepository extends JpaRepository<CustomerSearch, 
     @Query("SELECT cs.project, COUNT(cs) as searchCount FROM CustomerSearch cs GROUP BY cs.project ORDER BY searchCount DESC")
     List<Object[]> findPopularProjects();
     
-    // Customer's latest search
-    @Query("SELECT cs FROM CustomerSearch cs WHERE cs.cusId = :cusId ORDER BY cs.dateSearched DESC")
+    // FIXED: Customer's latest search using relationship
+    @Query("SELECT cs FROM CustomerSearch cs WHERE cs.customer.cusId = :cusId ORDER BY cs.dateSearched DESC")
     List<CustomerSearch> findLatestSearchesByCustomer(@Param("cusId") Long cusId);
     
     // Search trends by project and date range

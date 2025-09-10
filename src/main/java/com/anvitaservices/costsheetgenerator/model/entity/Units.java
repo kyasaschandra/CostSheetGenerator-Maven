@@ -21,7 +21,7 @@ public class Units {
     private String project;
     
     @Column(name = "tower")
-    private Character tower;
+    private String tower;
     
     @Column(name = "floor")
     private Integer floor;
@@ -30,7 +30,7 @@ public class Units {
     private Integer unit;
     
     @Column(name = "sft")
-    private Integer sft;
+    private Double sft;
     
     @Column(name = "face")
     private String face;

@@ -24,8 +24,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     // Find by email or phone
     Optional<Customer> findByCusEmailOrCusPhone(String cusEmail, String cusPhone);
     
-    // Find customers with search history
-    @Query("SELECT DISTINCT c FROM Customer c WHERE c.cusId IN (SELECT cs.cusId FROM CustomerSearch cs)")
+    // FIXED: Find customers with search history - now works with proper relationship
+    @Query("SELECT DISTINCT cs.customer FROM CustomerSearch cs")
     List<Customer> findCustomersWithSearchHistory();
     
     // Find customers by city/location in address

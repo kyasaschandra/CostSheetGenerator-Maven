@@ -18,9 +18,6 @@ public class CustomerSearch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "cus_id")
-    private Long cusId;
-    
     @Column(name = "project")
     private String project;
     
@@ -57,8 +54,8 @@ public class CustomerSearch {
     @Column(name = "date_searched")
     private LocalDateTime dateSearched;
     
-    // Many-to-one relationship with Customer
+    // FIXED: Use proper ManyToOne relationship without separate cusId field
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cus_id", insertable = false, updatable = false)
+    @JoinColumn(name = "cus_id", nullable = false)
     private Customer customer;
 }
