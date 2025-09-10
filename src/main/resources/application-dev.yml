@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/costsheetgen_dev_db
+    username: postgres
+    password: password
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
+  h2:
+    console:
+      enabled: false # We're using PostgreSQL
+      
+server:
+  port: 8080
+  
+cors:
+  allowed-origins: 
+    - http://localhost:3000  # Client app
+    - http://localhost:3001  # Admin app  
+    - http://localhost:3002  # Representative app
+    - http://client.localhost:3000
+    - http://admin.localhost:3000
+    - http://rep.localhost:3000
