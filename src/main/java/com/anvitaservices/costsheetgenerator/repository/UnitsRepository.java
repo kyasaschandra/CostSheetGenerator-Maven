@@ -45,7 +45,7 @@ public interface UnitsRepository extends JpaRepository<Units, Long> {
     List<Units> findBySft(Double Sft);
     
     // Find specific units with Sft
-    Optional<Units> findByProjectAndTowerAndFloorAndUnit(String project, String tower, Integer floor, String unit);
+    Optional<Units> findByProjectAndTowerAndFloorAndUnit(String project, String tower, Integer floor, Integer unit);
     
     // Find specific unit
     Optional<Units> findByProjectAndTowerAndFloorAndSft(String project, String tower, Integer floor, Double Sft);

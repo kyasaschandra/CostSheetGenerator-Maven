@@ -17,7 +17,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.yourcompany.yourapp.repository")
+@EnableJpaRepositories(basePackages = "com.anvitaservices.costsheetgenerator.repository")
 public class DatabaseConfig {
 
     @Value("${spring.datasource.url}")
@@ -47,7 +47,7 @@ public class DatabaseConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.yourcompany.yourapp.model.entity");
+        em.setPackagesToScan("com.anvitaservices.costsheetgenerator.model.entity");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

@@ -39,7 +39,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT DISTINCT u FROM User u WHERE u.id IN (SELECT DISTINCT ut.updatedBy FROM Units ut WHERE ut.updatedBy IS NOT NULL)")
     List<User> findUsersWhoUpdatedUnits();
     
-    @Query("SELECT DISTINCT u FROM Details d WHERE d.id IN (SELECT DISTINCT ut.updatedBy FROM Deatils dt WHERE dt.updatedBy IS NOT NULL)")
+    @Query("SELECT DISTINCT u FROM Details d WHERE d.id IN (SELECT DISTINCT ut.updatedBy FROM Details dt WHERE dt.updatedBy IS NOT NULL)")
     List<User> findUsersWhoUpdatedDetails();
     
     // Check if username exists
